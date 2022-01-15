@@ -1,0 +1,25 @@
+{
+  "name": "wordle",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build -w packages/app",
+    "predeploy": "npm run build",
+    "deploy": "npm run cdk -w packages/cdk -- deploy --all"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  },
+  "workspaces": [
+    "packages/cdk",
+    "packages/app"
+  ],
+  "engines": {
+    "node": ">= 16.13"
+  },
+  "author": "yamatatsu <the.kinnikuman@gmail.com> (https://github.com/yamatatsu)",
+  "license": "MIT",
+  "private": true
+}
