@@ -1,7 +1,11 @@
-import useGameState, { State } from "./useGameState";
+import { format } from "date-fns";
+import useGameState from "./useGameState";
+import useLocalStorage from "./useLocalStorage";
 import { EstimatedWord, EstimationResult } from "../../types";
+import { State } from "./types";
+import { useEffect } from "react";
 
-export type { ErrorObject, ErrorType } from "./useGameState";
+export type { ErrorObject, ErrorType } from "./types";
 
 export type AlphabetHints = Record<string, EstimationResult>;
 export type GameStatus = "playing" | "solved" | "failure";
@@ -13,13 +17,18 @@ export type Game = State & {
   handleEnterPressed: () => void;
 };
 
-export type Action =
-  | { type: "alphabetPressed"; payload: { char: string } }
-  | { type: "deletePressed" }
-  | { type: "enterPressed"; payload: { timestamp: number } };
+export default function useGame(
+  dictionary: string[],
+  answer: string,
+  date: Date
+): Game {
+  const [storagedState, persist] = useLocalStorage(format(date, "yyyy-MM-dd"));
 
-export default function useGame(dictionary: string[], answer: string): Game {
-  const [state, dispatch] = useGameState(dictionary, answer);
+  const [state, dispatch] = useGameState(dictionary, answer, storagedState);
+
+  useEffect(() => {
+    persist(state);
+  }, [state]);
 
   const alphabetHints = getAlphabetHints(state.estimationHistory);
 

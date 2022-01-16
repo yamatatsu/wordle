@@ -12,9 +12,11 @@ if (debugMode) {
   console.log("answer:", answer);
 }
 
+const date = new Date();
+
 ReactDOM.render(
   <React.StrictMode>
-    <App dictionary={dictionary} answer={answer} />
+    <App dictionary={dictionary} answer={answer} date={date} />
   </React.StrictMode>,
   document.getElementById("root")
 );

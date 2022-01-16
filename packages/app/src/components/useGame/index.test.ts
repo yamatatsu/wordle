@@ -1,4 +1,4 @@
-import { it, describe, expect } from "vitest";
+import { it, describe, expect, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react-hooks";
 import useGame, { Game } from ".";
 
@@ -17,10 +17,17 @@ const initialState: GameProperties = {
   gameStatus: "playing",
 };
 
+vi.mock("./localStorage", () => ({
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+}));
+
 describe("store", () => {
   it("init", () => {
     const answer = "qwert";
-    const { result } = renderHook(() => useGame(dictionary, answer));
+    const { result } = renderHook(() =>
+      useGame(dictionary, answer, new Date("2022-01-16"))
+    );
 
     const expected: GameProperties = initialState;
     expect(result.current).toEqual(expect.objectContaining(expected));
@@ -29,7 +36,9 @@ describe("store", () => {
   describe("alphabetPressed", () => {
     it("success", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
 
@@ -42,7 +51,9 @@ describe("store", () => {
 
     it("already filled", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
       act(() => result.current.handleAlphabetPressed("w"));
@@ -62,7 +73,9 @@ describe("store", () => {
   describe("deletePressed", () => {
     it("success", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
       act(() => result.current.handleAlphabetPressed("w"));
@@ -79,7 +92,9 @@ describe("store", () => {
 
     it("already empty", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
       act(() => result.current.handleAlphabetPressed("w"));
@@ -100,7 +115,9 @@ describe("store", () => {
   describe("enterPressed", () => {
     it("resolved", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
       act(() => result.current.handleAlphabetPressed("w"));
@@ -134,7 +151,9 @@ describe("store", () => {
 
     it("not resolved", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
       act(() => result.current.handleAlphabetPressed("w"));
@@ -168,7 +187,9 @@ describe("store", () => {
 
     it("fail", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       [...Array(6).keys()].forEach(() => {
         act(() => result.current.handleAlphabetPressed("q"));
@@ -197,7 +218,9 @@ describe("store", () => {
 
     it("not filled", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("q"));
       act(() => result.current.handleAlphabetPressed("w"));
@@ -219,7 +242,9 @@ describe("store", () => {
 
     it("not exists word", () => {
       const answer = "qwert";
-      const { result } = renderHook(() => useGame(dictionary, answer));
+      const { result } = renderHook(() =>
+        useGame(dictionary, answer, new Date("2022-01-16"))
+      );
 
       act(() => result.current.handleAlphabetPressed("z"));
       act(() => result.current.handleAlphabetPressed("x"));
