@@ -1,3 +1,4 @@
+import { differenceInDays } from "date-fns";
 import highSchoolWords from "./highSchoolWords";
 import juniorHighSchoolWords from "./juniorHighSchoolWords";
 import otherWords from "./otherWords";
@@ -10,23 +11,10 @@ export const dictionary = uniq([
   ...otherWords,
 ]);
 
-export const getRandomly = (words: string[]): string => {
-  return words[Math.floor(Math.random() * words.length)];
-};
-
-export const chooseRandomly = (
-  words: string[],
-  len: number,
-  choosen: string[] = []
-): string[] => {
-  if (choosen.length === len) {
-    return choosen;
-  }
-  const word = getRandomly(words);
-  if (choosen.includes(word)) {
-    return chooseRandomly(words, len, choosen);
-  }
-  return chooseRandomly(words, len, [...choosen, word]);
+export const getDailyOne = (words: string[]): string => {
+  // 経過日数
+  const numOfDaysElapsed = differenceInDays(new Date(), new Date(2022, 0, 16));
+  return words[numOfDaysElapsed % words.length];
 };
 
 function uniq(words: string[]): string[] {

@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
-import { candidates, dictionary, getRandomly } from "./data";
+import { candidates, dictionary, getDailyOne } from "./data";
 
-const answer = getRandomly(candidates);
+const answer = getDailyOne(candidates);
 
 const debugMode = location.search.includes("debug");
 
