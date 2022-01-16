@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build -w packages/app",
     "predeploy": "npm run build",
-    "deploy": "npm run cdk -w packages/cdk -- deploy --all"
+    "deploy": "npm run cdk -w packages/cdk -- deploy"
   },
   "devDependencies": {
     "prettier": "^2.5.1"

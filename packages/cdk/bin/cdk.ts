@@ -1,4 +1,5 @@
 import * as cdk from "aws-cdk-lib";
+import { DnsStack } from "../lib/dns";
 import { DeployStack } from "../lib/deploy";
 import { SiteStack } from "../lib/site";
 
@@ -10,7 +11,12 @@ const env = {
 
 const app = new cdk.App();
 
-const { bucket } = new SiteStack(app, "WordleSite", { env });
+const { hostedZone, certificate } = new DnsStack(app, "WordleDns", { env });
+const { bucket } = new SiteStack(app, "WordleSite", {
+  hostedZone,
+  certificate,
+  env,
+});
 new DeployStack(app, "WordleDeploy", {
   bucket: bucket,
   sourcePath: `../app/dist`,
