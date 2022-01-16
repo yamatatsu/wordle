@@ -1,6 +1,8 @@
 import useGameState, { State } from "./useGameState";
 import { EstimatedWord, EstimationResult } from "../../types";
 
+export type { ErrorObject, ErrorType } from "./useGameState";
+
 export type AlphabetHints = Record<string, EstimationResult>;
 export type GameStatus = "playing" | "solved" | "failure";
 export type Game = State & {
