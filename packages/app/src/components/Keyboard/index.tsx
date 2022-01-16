@@ -3,9 +3,9 @@ import { AlphabetHints } from "../useGame";
 import createAlphabetKey from "./AlphabetKey";
 import EnterKey from "./EnterKey";
 import DeleteKey from "./DeleteKey";
+import useRealKeyboard from "./useRealKeyboard";
 
 const wrapperStyle: CSSProperties = {
-  // maxWidth: "320px",
   display: "block",
   maxWidth: "500px",
 };
@@ -25,6 +25,8 @@ type Props = {
 };
 export default function Keyboard(props: Props) {
   const { alphabetHints, pressAlphabet, pressDelete, pressEnter } = props;
+
+  useRealKeyboard({ pressAlphabet, pressDelete, pressEnter });
 
   const AlphabetKey = createAlphabetKey({
     alphabetHints,
