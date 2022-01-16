@@ -21,10 +21,11 @@ const plainStyle: CSSProperties = {
 type Props = {
   content: string;
   hint?: EstimationResult;
+  flex?: number;
   press: () => void;
 };
 export default function Key(props: Props) {
-  const { content, hint, press } = props;
+  const { content, hint, flex = 1, press } = props;
 
   const hintStyle = hint ? hintStyleMap[hint] : plainStyle;
 
@@ -42,7 +43,7 @@ export default function Key(props: Props) {
         cursor: "pointer",
         userSelect: "none",
         color: "white",
-        flex: 1,
+        flex,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

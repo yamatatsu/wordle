@@ -19,6 +19,7 @@ const rootStyle: CSSProperties = {
 };
 const wrapperStyle: CSSProperties = {
   maxWidth: "500px",
+  width: "100vw",
 };
 
 type Props = { dictionary: string[]; answer: string };
