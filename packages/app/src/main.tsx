@@ -2,10 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
-import { juniorHighSchoolWords, getRandomly } from "./data";
+import { candidates, dictionary, getRandomly } from "./data";
 
-const dictionary = juniorHighSchoolWords;
-const answer = getRandomly(dictionary);
+const answer = getRandomly(candidates);
 
 const debugMode = location.search.includes("debug");
 
