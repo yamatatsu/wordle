@@ -1,15 +1,11 @@
 import { differenceInDays } from "date-fns";
-import highSchoolWords from "./highSchoolWords";
+// import highSchoolWords from "./highSchoolWords";
 import juniorHighSchoolWords from "./juniorHighSchoolWords";
-import otherWords from "./otherWords";
+import dictionaryWords from "./dictionaryWords";
+
+export { dictionaryWords };
 
 export const candidates = uniq(juniorHighSchoolWords);
-
-export const dictionary = uniq([
-  ...juniorHighSchoolWords,
-  ...highSchoolWords,
-  ...otherWords,
-]);
 
 export const getDailyOne = (words: string[]): string => {
   // 経過日数

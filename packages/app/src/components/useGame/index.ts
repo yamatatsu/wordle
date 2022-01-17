@@ -18,13 +18,17 @@ export type Game = State & {
 };
 
 export default function useGame(
-  dictionary: string[],
+  dictionaryWords: string[],
   answer: string,
   date: Date
 ): Game {
   const [storagedState, persist] = useLocalStorage(format(date, "yyyy-MM-dd"));
 
-  const [state, dispatch] = useGameState(dictionary, answer, storagedState);
+  const [state, dispatch] = useGameState(
+    dictionaryWords,
+    answer,
+    storagedState
+  );
 
   useEffect(() => {
     persist(state);

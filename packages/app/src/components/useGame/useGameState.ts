@@ -3,12 +3,12 @@ import { EstimatedWord, EstimatedChar } from "../../types";
 import { State, Action } from "./types";
 
 export default function useGameState(
-  dictionary: string[],
+  dictionaryWords: string[],
   answer: string,
   initialState?: State
 ) {
   return useReducer(
-    createReducer(dictionary, answer),
+    createReducer(dictionaryWords, answer),
     initialState ?? {
       currentInputWord: "",
       estimationHistory: [],
@@ -18,7 +18,7 @@ export default function useGameState(
 }
 
 const createReducer =
-  (dictionary: string[], answer: string) =>
+  (dictionaryWords: string[], answer: string) =>
   (state: State, action: Action): State => {
     switch (action.type) {
       case "alphabetPressed":
@@ -51,7 +51,7 @@ const createReducer =
             },
           };
         }
-        if (!dictionary.includes(word)) {
+        if (!dictionaryWords.includes(word)) {
           return {
             ...state,
             error: {

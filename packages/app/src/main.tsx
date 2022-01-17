@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
-import { candidates, dictionary, getDailyOne } from "./data";
+import { candidates, dictionaryWords, getDailyOne } from "./data";
 
 const answer = getDailyOne(candidates);
 
@@ -16,7 +16,7 @@ const date = new Date();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App dictionary={dictionary} answer={answer} date={date} />
+    <App dictionaryWords={dictionaryWords} answer={answer} date={date} />
   </React.StrictMode>,
   document.getElementById("root")
 );

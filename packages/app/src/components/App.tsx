@@ -22,11 +22,11 @@ const wrapperStyle: CSSProperties = {
   width: "100vw",
 };
 
-type Props = { dictionary: string[]; answer: string; date: Date };
+type Props = { dictionaryWords: string[]; answer: string; date: Date };
 function App(props: Props) {
-  const { dictionary, answer, date } = props;
+  const { dictionaryWords, answer, date } = props;
 
-  const game = useGame(dictionary, answer, date);
+  const game = useGame(dictionaryWords, answer, date);
 
   return (
     <div style={rootStyle}>
